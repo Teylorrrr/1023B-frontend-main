@@ -22,9 +22,13 @@ const PaginaInicial = () => (
 
 // Página 2: Container + Componente2
 const PaginaContainer = () => (
-  <Container>
-    <Componente2 />
-  </Container>
+   <>
+    <Header />
+    <Container>
+      <Componente2 />
+    </Container>
+    <Footer />
+  </>
 )
 
 const router = createBrowserRouter([
