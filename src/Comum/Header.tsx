@@ -1,11 +1,11 @@
 import { Link, useLocation } from 'react-router-dom'
-import { route, route2} from './Router'
-import './header.css'
+import { route, route2} from '../Router'
+import './Pages/header.css'
 
 function Header() {
   const location = useLocation()
 
-  const isComponente1 = location.pathname === '/' || location.pathname === '/componente1'
+  const isCampeonatos = location.pathname === '/' || location.pathname === '/Campeonatos'
 
   return (
     <header>

@@ -2,46 +2,81 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-import './Header.css'
-import './Container.css'
-import './Footer.css'
-import Componente1 from './Componente1.tsx'
-import Componente2 from './Componente2.tsx'
-import Header from './Header.tsx'
-import Footer from './Footer.tsx'
-import Container from './Container.tsx'
+///////////////// Páginas ////////////////////////////
+import Campeonatos from './Pages/Campeonatos.tsx'
+import Equipes from './Pages/Equipes.tsx'
+import Fotos from './Pages/Fotos.tsx'
+import Noticias from './Pages/Noticias.tsx'
+import OutrosCampeonatos from './Pages/OutrosCampeonatos.tsx'
+import Atletas from './Pages/Atletas.tsx'
+import Estatisticas from './Pages/Estatisticas.tsx'
+import Loja from './Pages/Loja.tsx'
 
-// Página inicial: Header, Componente1, Footer
+///////////////// Componentes comuns ////////////////////////////
+import Header from './Comum/Header.tsx'
+import Footer from './Comum/Footer.tsx'
+import Container from './Container.tsx' // Mantido apenas o import, como pedido
+
+///////////////// Estilos ////////////////////////////
+import './Header.css'
+import './Footer.css'
+import './Container.css' // Mantido apenas o import, como pedido
+
+///////////////// Página inicial ////////////////////////////
 const PaginaInicial = () => (
   <>
     <Header />
-    <Componente1 />
+    <Campeonatos />
     <Footer />
   </>
 )
 
-// Página 2: Container + Componente2
-const PaginaContainer = () => (
-   <>
+///////////////// Modelo para outras páginas ////////////////////////////
+const PaginaPadrao = ({ children }: { children: React.ReactNode }) => (
+  <>
     <Header />
-    <Container>
-      <Componente2 />
-    </Container>
+    {children}
     <Footer />
   </>
 )
 
+///////////////// Roteador ////////////////////////////
 const router = createBrowserRouter([
   {
     path: '/',
     element: <PaginaInicial />
   },
   {
-    path: '/componente2',
-    element: <PaginaContainer />
+    path: '/Equipes',
+    element: <PaginaPadrao><Equipes /></PaginaPadrao>
+  },
+  {
+    path: '/Fotos',
+    element: <PaginaPadrao><Fotos /></PaginaPadrao>
+  },
+  {
+    path: '/Noticias',
+    element: <PaginaPadrao><Noticias /></PaginaPadrao>
+  },
+  {
+    path: '/OutrosCampeonatos',
+    element: <PaginaPadrao><OutrosCampeonatos /></PaginaPadrao>
+  },
+  {
+    path: '/Atletas',
+    element: <PaginaPadrao><Atletas /></PaginaPadrao>
+  },
+  {
+    path: '/Estatisticas',
+    element: <PaginaPadrao><Estatisticas /></PaginaPadrao>
+  },
+  {
+    path: '/Loja',
+    element: <PaginaPadrao><Loja /></PaginaPadrao>
   }
 ])
 
+///////////////// Renderização ////////////////////////////
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RouterProvider router={router} />
