@@ -18,8 +18,8 @@ import Footer from './Comum/Footer.tsx'
 import Container from './Container.tsx' // Mantido apenas o import, como pedido
 
 ///////////////// Estilos ////////////////////////////
-import './Header.css'
-import './Footer.css'
+import './Comum/Header.css'
+import './Comum/Footer.css'
 import './Container.css' // Mantido apenas o import, como pedido
 
 ///////////////// Página inicial ////////////////////////////
