@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+////////////////////////////////////////////////////
 ///////////////// Páginas ////////////////////////////
 import Campeonatos from './Pages/Campeonatos.tsx'
 import Equipes from './Pages/Equipes.tsx'
@@ -11,25 +12,30 @@ import OutrosCampeonatos from './Pages/OutrosCampeonatos.tsx'
 import Atletas from './Pages/Atletas.tsx'
 import Estatisticas from './Pages/Estatisticas.tsx'
 import Loja from './Pages/Loja.tsx'
+///////////////// Páginas estilo /////////////////////////////
+/*
+import './Pages/Campeonatos.css'
+import './Pages/Equipes.css'
+import './Pages/Fotos.css'
+import './Pages/Noticias.css'
+import './Pages/OutrosCampeonatos.css'*/
+import './Pages/Atletas.css'
+/*
+import './Pages/Estatisticas.css'
+import './Pages/Loja.css'*/
+////////////////////////////////////////////////////////
+///////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////
 ///////////////// Componentes comuns ////////////////////////////
 import Header from './Comum/Header.tsx'
 import Footer from './Comum/Footer.tsx'
-import Container from './Container.tsx' // Mantido apenas o import, como pedido
-
 ///////////////// Estilos ////////////////////////////
 import './Comum/Header.css'
 import './Comum/Footer.css'
-import './Container.css' // Mantido apenas o import, como pedido
+////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
-///////////////// Página inicial ////////////////////////////
-const PaginaInicial = () => (
-  <>
-    <Header />
-    <Campeonatos />
-    <Footer />
-  </>
-)
 
 ///////////////// Modelo para outras páginas ////////////////////////////
 const PaginaPadrao = ({ children }: { children: React.ReactNode }) => (
@@ -42,15 +48,19 @@ const PaginaPadrao = ({ children }: { children: React.ReactNode }) => (
 
 ///////////////// Roteador ////////////////////////////
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <PaginaInicial />
-  },
-  {
-    path: '/Equipes',
-    element: <PaginaPadrao><Equipes /></PaginaPadrao>
-  },
-  {
+{
+  path: '/',
+  element: <PaginaPadrao><Campeonatos /></PaginaPadrao>
+},
+{
+  path: '/Campeonatos',
+  element: <PaginaPadrao><Campeonatos /></PaginaPadrao>
+},
+{
+  path: '/Equipes',
+  element: <PaginaPadrao><Equipes /></PaginaPadrao>
+},
+{
     path: '/Fotos',
     element: <PaginaPadrao><Fotos /></PaginaPadrao>
   },
