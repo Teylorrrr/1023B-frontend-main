@@ -125,3 +125,34 @@ h1 {
     transform: translateY(0);
   }
 }
+.container-atletas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 2rem;
+  justify-content: center;
+}
+
+.card-atleta {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-atleta h3 {
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.card-atleta p {
+  font-size: 0.9rem;
+  margin: 0.3rem 0;
+}
+
+.mensagem {
+  color: red;
+  text-align: center;
+  margin-top: 1rem;
+}
