@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
 
+/* Variáveis para cores e espaçamentos */
+:root {
+  --cor-fundo: linear-gradient(135deg, #ecf0f3, #ffffff);
+  --cor-texto: #333;
+  --cor-primaria: #2e7d32;
+  --cor-secundaria: #4caf50;
+  --cor-cards-bg: #222;
+  --cor-cards-texto: #fff;
+  --cor-cards-hover-bg: #2a2a2a;
+  --cor-error: #e74c3c;
+  --espacamento-padrao: 1rem;
+  --borda-radius: 8px;
+  --sombra-leve: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --sombra-hover: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
 /* Reset básico */
 * {
   margin: 0;
@@ -9,55 +25,60 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #ecf0f3, #ffffff);
-  color: #333;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
   min-height: 100vh;
   padding-bottom: 40px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
 }
 
 h1 {
   text-align: center;
   font-size: 3rem;
-  margin-top: 40px;
-  margin-bottom: 30px;
+  margin: 2.5rem 0 1.8rem;
   color: #2c3e50;
   position: relative;
   animation: fadeInDown 0.6s ease-out;
+  font-weight: 700;
 }
 
-/* Container geral da seção */
 .container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 1.5rem 1rem 3rem;
   display: grid;
-  gap: 40px;
+  gap: 2.5rem;
   align-items: center;
   justify-items: center;
 }
 
-/* Imagem do Draft */
 .Draft2025 {
   width: 100%;
   max-width: 600px;
   border-radius: 18px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--sombra-leve);
   transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
   animation: fadeInUp 0.8s ease-out;
+  cursor: pointer;
+  object-fit: cover;
+  display: block;
 }
 
-.Draft2025:hover {
-  transform: scale(1.03);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+.Draft2025:hover,
+.Draft2025:focus {
+  transform: scale(1.04);
+  box-shadow: var(--sombra-hover);
   filter: brightness(1.05);
+  outline: none;
 }
 
-/* Cartões dos drafts */
 .draft {
-  background-color: #ffffff;
-  padding: 25px 30px;
+  background-color: #fff;
+  padding: 2rem 2.5rem;
   border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   width: 100%;
   max-width: 720px;
   position: relative;
@@ -72,67 +93,86 @@ h1 {
   top: 0;
   width: 6px;
   height: 100%;
-  background: linear-gradient(to bottom, #4CAF50, #2E7D32);
+  background: linear-gradient(to bottom, var(--cor-secundaria), var(--cor-primaria));
   border-top-left-radius: 14px;
   border-bottom-left-radius: 14px;
 }
 
 .draft h2 {
   color: #2c3e50;
-  margin-bottom: 12px;
-  font-weight: 600;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-size: 1.8rem;
 }
 
 .draft p {
   line-height: 1.7;
   color: #444;
+  font-size: 1rem;
 }
 
-/* Container para os cards dos atletas - FLEXBOX */
+/* Container dos atletas: flex com espaçamento fluido */
 .container-atletas {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.25rem;
   justify-content: center;
-  padding: 1rem;
+  padding: 0 1rem 3rem;
 }
 
-/* Cartões dos atletas */
+/* Card do atleta */
 .card-atleta {
-  background-color: #222;
-  color: white;
+  background-color: var(--cor-cards-bg);
+  color: var(--cor-cards-texto);
   width: 180px;
   text-align: center;
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 0 10px #000;
+  border-radius: var(--borda-radius);
+  padding: 1rem 1rem 1.5rem;
+  box-shadow: var(--sombra-leve);
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  min-height: 350px; /* altura uniforme */
+  user-select: none;
 }
 
-.card-atleta:hover {
-  transform: scale(1.05);
+.card-atleta:hover,
+.card-atleta:focus {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: var(--sombra-hover);
+  background-color: var(--cor-cards-hover-bg);
+  outline: none;
 }
 
-.card-atleta img {
+.card-atleta img,
+.foto-atleta {
   width: 100%;
-  border-radius: 4px;
-  margin-bottom: 0.5rem;
+  max-height: 220px;
+  border-radius: 6px;
+  margin-bottom: 0.8rem;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
 }
 
 .card-atleta h3 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  color: #eaeaea;
 }
 
 .card-atleta p {
   font-size: 0.9rem;
   margin-bottom: 0.4rem;
-  line-height: 1.3;
+  line-height: 1.4;
+  color: #ccc;
 }
 
-/* Botão do card */
+/* Botão do card (se usado) */
 .card-atleta button {
   margin-top: auto;
   background: #444;
@@ -145,15 +185,18 @@ h1 {
   transition: background 0.3s ease;
 }
 
-.card-atleta button:hover {
-  background: #2e7d32; /* verde escuro */
+.card-atleta button:hover,
+.card-atleta button:focus {
+  background: var(--cor-primaria);
+  outline: none;
 }
 
 /* Mensagem de erro */
 .mensagem {
-  color: red;
+  color: var(--cor-error);
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
 }
 
 /* Responsivo */
@@ -163,7 +206,7 @@ h1 {
   }
 
   .draft {
-    padding: 20px;
+    padding: 1.5rem 1.75rem;
   }
 
   .Draft2025 {
@@ -172,7 +215,8 @@ h1 {
 
   .card-atleta {
     width: 100%;
-    max-width: 300px;
+    max-width: 320px;
+    min-height: auto;
   }
 }
 
@@ -198,10 +242,69 @@ h1 {
     transform: translateY(0);
   }
 }
-.foto-atleta {
+.card-atleta {
+  background-color: #222;
+  color: white;
   width: 100%;
-  border-radius: 6px;
-  margin-bottom: 0.5rem;
+  max-width: 720px;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card-atleta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.foto-atleta {
+  width: 140px;
+  height: 140px;
+  border-radius: 8px;
   object-fit: cover;
-  max-height: 220px;
+  flex-shrink: 0;
+}
+
+.info-atleta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.info-atleta h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #eaeaea;
+}
+
+.info-atleta p {
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+/* Responsivo: empilhar imagem e texto */
+@media (max-width: 600px) {
+  .card-atleta {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .foto-atleta {
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+  }
+
+  .info-atleta {
+    align-items: center;
+  }
 }

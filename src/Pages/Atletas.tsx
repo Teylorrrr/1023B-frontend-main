@@ -4,7 +4,6 @@ import './Atletas.css'
 
 interface Atleta {
   registroAtleta: number
-  nome: string
   numeroCamisa: number
   nomeCamisa: string
   altura: number
@@ -56,27 +55,31 @@ return (
     <div className="container-atletas">
       {Array.isArray(atletas) && atletas.length > 0 ? (
         atletas.map(atleta => (
-          <div key={atleta.registroAtleta} className="card-atleta" onClick={() => navigate(`/atleta/${atleta.registroAtleta}`)}>
-            
-            <img
-              src={`/Imagens/atletas/${atleta.registroAtleta}.png`}
-              alt={atleta.nome}
-              className="foto-atleta"
-              onError={(e) => {
-                const target = e.currentTarget as HTMLImageElement
-                if (!target.dataset.fallback) {
-                  target.src = "/Imagens/JogadorSemFoto.png"
-                  target.alt = `Sem foto de ${atleta.nome}`
-                  target.dataset.fallback = "true"
-                }
-              }}
-            />
-            <h3>{atleta.nome} #{atleta.numeroCamisa}</h3>
-            <p><strong>Idade:</strong> {atleta.idade} anos</p>
-            <p><strong>Altura:</strong> {atleta.altura} m</p>
-            <p><strong>Peso:</strong> {atleta.peso} kg</p>
-            <p><strong>Posição:</strong> {atleta.posicao}</p>
-          </div>
+        <div key={atleta.registroAtleta} className="card-atleta" onClick={() => navigate(`/atleta/${atleta.registroAtleta}`)}>
+
+  <img
+    src={`/Imagens/Atletas/${atleta.registroAtleta}.png`}
+    alt={atleta.nomeCamisa}
+    className="foto-atleta"
+    onError={(e) => {
+      const target = e.currentTarget as HTMLImageElement
+      if (!target.dataset.fallback) {
+        target.src = "/Imagens/JogadorSemFoto.png"
+        target.alt = `Sem foto de ${atleta.nomeCamisa}`
+        target.dataset.fallback = "true"
+      }
+    }}
+  />
+  <div className="info-atleta">
+    <h3>{atleta.nomeCamisa} #{atleta.numeroCamisa}</h3>
+    {atleta.altura !== undefined && <p><strong>Altura:</strong> {atleta.altura} m</p>}
+    {atleta.peso !== undefined && <p><strong>Peso:</strong> {atleta.peso} kg</p>}
+    {atleta.idade !== undefined && <p><strong>Idade:</strong> {atleta.idade} anos</p>}
+    {atleta.posicao && <p><strong>Posição:</strong> {atleta.posicao}</p>}
+  </div>
+
+</div>
+
         ))
       ) : (
         <p>Carregando atletas...</p>
