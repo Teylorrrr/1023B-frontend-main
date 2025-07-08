@@ -23,8 +23,8 @@ import './Pages/Atletas.css'
 /*
 import './Pages/Estatisticas.css'
 import './Pages/Loja.css'*/
-////////////////////////////////////////////////////////
-///////////////////////////////////////////
+/////////////////////////paginas-especificas///////////////////////////////
+import PerfilAtleta from './Pages/PerfilAtleta.tsx'
 
 //////////////////////////////////////////////////////////////
 ///////////////// Componentes comuns ////////////////////////////
@@ -75,6 +75,10 @@ const router = createBrowserRouter([
   {
     path: '/Atletas',
     element: <PaginaPadrao><Atletas /></PaginaPadrao>
+  },
+  {
+  path: '/atleta/:registroAtleta',
+  element: <PaginaPadrao><PerfilAtleta /></PaginaPadrao>
   },
   {
     path: '/Estatisticas',

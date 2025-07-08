@@ -1,0 +1,18 @@
+.perfil-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  background: #f3f3f3;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.perfil-container img {
+  width: 200px;
+  border-radius: 10px;
+}
+
+.perfil-container p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}

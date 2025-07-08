@@ -1,24 +1,22 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Atletas.css'
+
 interface Atleta {
-  id: number
+  registroAtleta: number
   nome: string
   numeroCamisa: number
   nomeCamisa: string
   altura: number
-  envergadura: number
-  saltoVertical: number
   peso: number
   posicao: string
-  paisOrigem: string
-  estadoOrigem: string
-  cidadeOrigem: string
   idade: number
 }
 
-function Atletas()  {
+function Atletas() {
   const [atletas, setAtletas] = useState<Atleta[]>([])
   const [mensagem, setMensagem] = useState("")
+  const navigate = useNavigate()
 
   useEffect(() => {
     const buscarAtletas = async () => {
@@ -27,6 +25,7 @@ function Atletas()  {
         if (resposta.status === 200) {
           const dados = await resposta.json()
           setAtletas(dados)
+          setMensagem("")
         } else {
           const erro = await resposta.json()
           setMensagem(erro.mensagem || "Erro ao carregar atletas")
@@ -38,37 +37,53 @@ function Atletas()  {
 
     buscarAtletas()
   }, [])
-  return (
-    <>
-      <h1>Draft 2025</h1>
-      <div className="container">
-       
-        
-        <div className="draft">
-          <h2>Draft 2025</h2>
-          <p>O Draft 2025 está programado para o dia 15 de Dezembro de 2025. As equipes estão se preparando para selecionar novos talentos que irão brilhar na liga.</p>
-        </div>
- <img src="/Imagens/Draft2025.png" alt="Draft2025" className="Draft2025" />
+return (
+  <>
+    <h1>Draft 2025</h1>
+    <div className="container">
+      <div className="draft">
+        <h2>Draft 2025</h2>
+        <p>
+          O Draft 2025 está programado para o dia 15 de Dezembro de 2025. As equipes estão se preparando para selecionar novos talentos que irão brilhar na liga.
+        </p>
       </div>
-       <h1>Principais candidatos ao Draft</h1>
-     {mensagem && <p className="mensagem">{mensagem}</p>}
+         <img src="/Imagens/Draft2025.png" alt="Draft2025" className="Draft2025" />
+    </div>
 
-      <div className="container-atletas">
-        {atletas.map(atleta => (
-          <div key={atleta.id} className="card-atleta">
-            <h3>{atleta.nomeCamisa} #{atleta.numeroCamisa}</h3>
-            <p><strong>Nome completo:</strong> {atleta.nome}</p>
+    <h1>Principais candidatos ao Draft</h1>
+    {mensagem && <p className="mensagem">{mensagem}</p>}
+
+    <div className="container-atletas">
+      {Array.isArray(atletas) && atletas.length > 0 ? (
+        atletas.map(atleta => (
+          <div key={atleta.registroAtleta} className="card-atleta" onClick={() => navigate(`/atleta/${atleta.registroAtleta}`)}>
+            
+            <img
+              src={`/Imagens/atletas/${atleta.registroAtleta}.png`}
+              alt={atleta.nome}
+              className="foto-atleta"
+              onError={(e) => {
+                const target = e.currentTarget as HTMLImageElement
+                if (!target.dataset.fallback) {
+                  target.src = "/Imagens/JogadorSemFoto.png"
+                  target.alt = `Sem foto de ${atleta.nome}`
+                  target.dataset.fallback = "true"
+                }
+              }}
+            />
+            <h3>{atleta.nome} #{atleta.numeroCamisa}</h3>
             <p><strong>Idade:</strong> {atleta.idade} anos</p>
             <p><strong>Altura:</strong> {atleta.altura} m</p>
-            <p><strong>Envergadura:</strong> {atleta.envergadura} m</p>
-            <p><strong>Salto Vertical:</strong> {atleta.saltoVertical} cm</p>
             <p><strong>Peso:</strong> {atleta.peso} kg</p>
             <p><strong>Posição:</strong> {atleta.posicao}</p>
-            <p><strong>Origem:</strong> {atleta.cidadeOrigem}, {atleta.estadoOrigem} - {atleta.paisOrigem}</p>
           </div>
-        ))}
-      </div>
-    </>
-  )
+        ))
+      ) : (
+        <p>Carregando atletas...</p>
+      )}
+    </div>
+  </>
+)
 }
+
 export default Atletas
