@@ -12,6 +12,22 @@ interface Atleta {
   idade: number
 }
 
+function posicaoParaTexto(posicao: number): string {
+  switch (posicao) {
+    case 1:
+      return 'Armador';
+    case 2:
+      return 'Ala-armador';
+    case 3:
+      return 'Ala';
+    case 4:
+      return 'Ala-pivô';
+    case 5:
+      return 'Pivô';
+    default:
+      return 'Posição desconhecida';
+  }
+}
 function Atletas() {
   const [atletas, setAtletas] = useState<Atleta[]>([])
   const [mensagem, setMensagem] = useState("")
@@ -75,7 +91,7 @@ return (
     {atleta.altura !== undefined && <p><strong>Altura:</strong> {atleta.altura} m</p>}
     {atleta.peso !== undefined && <p><strong>Peso:</strong> {atleta.peso} kg</p>}
     {atleta.idade !== undefined && <p><strong>Idade:</strong> {atleta.idade} anos</p>}
-    {atleta.posicao && <p><strong>Posição:</strong> {atleta.posicao}</p>}
+    {atleta.posicao && <p><strong>Posição:</strong> {posicaoParaTexto(atleta.posicao)}</p>}
   </div>
 
 </div>

@@ -1,87 +1,387 @@
-.perfil-container {
-  max-width: 900px;
-  margin: 2rem auto;
-  background: #f4f4f4;
-  border-radius: 20px;
-  padding: 2rem;
-  font-family: 'Segoe UI', sans-serif;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* perfilAtleta.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0e0e0;
+    margin: 0;
+    padding: 0;
 }
 
-.voltar {
-  background: none;
-  border: none;
-  color: #0066cc;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  cursor: pointer;
+.perfil-atleta-container {
+    max-width: 1000px; /* Adjust as needed */
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.titulo-nome {
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 1.5rem;
+.header-navigation {
+    text-align: left;
+    margin-bottom: 10px;
 }
 
-.estatisticas {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 2rem;
-  text-align: center;
+.header-navigation button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.header-navigation button:hover {
+    background-color: #0056b3;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8f9fa; /* Light background for the top bar */
+    padding: 10px 20px;
+    border-radius: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.player-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.player-number {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+.player-name {
+    font-size: 2em;
+    margin: 0;
+    color: #000;
+}
+
+.share-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.share-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.share-icon.facebook { background-color: #3b5998; }
+.share-icon.twitter { background-color: #00acee; }
+.share-icon.instagram { background-color: #e4405f; }
+
+.stats-period-toggle {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.toggle-btn {
+    padding: 5px 15px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: bold;
+    color: #555;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-btn.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.toggle-btn:not(.active):hover {
+    background-color: #eee;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.player-summary-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    background-color: #333; /* Dark background as in the image */
+    padding: 15px;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
 }
 
 .stat-box {
-  background: #333;
-  color: #fff;
-  padding: 1rem;
-  border-radius: 10px;
-  width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.stat-num {
-  font-size: 1.5rem;
-  display: block;
+.stat-label {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    color: #aaa;
 }
 
-.ficha {
-  background: #fff;
-  padding: 1rem;
-  border-radius: 10px;
-  margin-bottom: 2rem;
+.stat-value {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-top: 5px;
 }
 
-.grafico {
-  max-width: 500px;
-  margin: 0 auto 2rem;
+.player-details-grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr; /* Adjust column width as needed */
+    gap: 20px;
 }
 
-.recordes {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 1rem;
+.player-image-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0; /* Lighter background for image section */
+    border-radius: 8px;
 }
 
-.recorde-box {
-  background: #e6e6e6;
-  padding: 1rem;
-  border-radius: 10px;
-  width: 180px;
-  text-align: center;
+.player-photo {
+    width: 180px; /* Adjust size to match image */
+    height: auto;
+    border-radius: 5px;
+    object-fit: contain; /* Ensure the image fits without distortion */
 }
 
-.recorde-valor {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #222;
+.ficha-tecnica {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 8px;
 }
 
-.recorde-tipo {
-  font-weight: bold;
-  margin-top: 0.5rem;
+.ficha-tecnica h2 {
+    font-size: 1.2em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
 }
 
-.recorde-info {
-  font-size: 0.9rem;
-  color: #555;
+.detail-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* Name, Value, Name, Value */
+    gap: 5px 10px;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+
+.detail-row span:nth-child(odd) {
+    font-weight: bold;
+    color: #555;
+    text-align: right;
+}
+
+.detail-row span:nth-child(even) {
+    color: #333;
+    text-align: left;
+}
+
+.perfil-records-container {
+    grid-column: span 2; /* Span across both columns of the grid */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Radar chart and personal records side-by-side */
+    gap: 20px;
+}
+
+.perfil-na-temporada, .recordes-pessoais {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.perfil-na-temporada h2, .recordes-pessoais h2 {
+    font-size: 1.2em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.radar-chart-container {
+    height: 300px; /* Fixed height for the radar chart */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recordes-pessoais {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.records-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px; /* Constrain width */
+    margin-top: 10px;
+}
+
+.record-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.record-value {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.record-label {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    color: #777;
+}
+
+.record-game {
+    font-size: 0.7em;
+    color: #999;
+    margin-top: 5px;
+}
+
+.desempenho-jogos {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.desempenho-jogos h2 {
+    font-size: 1.2em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.tabela-estatisticas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+
+.tabela-estatisticas th, .tabela-estatisticas td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.tabela-estatisticas th {
+    background-color: #e9ecef;
+    font-weight: bold;
+    color: #333;
+}
+
+.tabela-estatisticas tbody tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.tabela-estatisticas tbody tr:hover {
+    background-color: #e2e6ea;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .player-header {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .share-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .stats-period-toggle {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .player-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .perfil-records-container {
+        grid-template-columns: 1fr;
+    }
+
+    .player-summary-stats {
+        grid-template-columns: 1fr 1fr; /* 2 columns on small screens */
+    }
+
+    .ficha-tecnica .detail-row {
+        grid-template-columns: 1fr 1fr; /* Simplify for smaller screens */
+    }
+     .ficha-tecnica .detail-row span:nth-child(odd),
+     .ficha-tecnica .detail-row span:nth-child(even) {
+        text-align: left;
+     }
+
+}
+
+@media (max-width: 480px) {
+    .player-summary-stats {
+        grid-template-columns: 1fr; /* 1 column on very small screens */
+    }
+    .records-grid {
+        grid-template-columns: 1fr;
+    }
+    .tabela-estatisticas {
+        overflow-x: auto; /* Enable horizontal scrolling for table */
+        display: block; /* Make table behave like a block for scrolling */
+        white-space: nowrap; /* Prevent wrapping inside table cells */
+    }
 }

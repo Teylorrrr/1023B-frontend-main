@@ -1,0 +1,36 @@
+.campeonatos-container {
+  padding: 2rem;
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5;
+}
+
+.lista-campeonatos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.card-campeonato {
+  background-color: white;
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.card-campeonato:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-campeonato h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-campeonato p {
+  font-size: 0.95rem;
+  color: #444;
+}
