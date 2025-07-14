@@ -1,18 +1,87 @@
 .perfil-container {
-  max-width: 500px;
+  max-width: 900px;
   margin: 2rem auto;
-  background: #f3f3f3;
+  background: #f4f4f4;
+  border-radius: 20px;
   padding: 2rem;
-  border-radius: 10px;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.voltar {
+  background: none;
+  border: none;
+  color: #0066cc;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.titulo-nome {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.estatisticas {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
-.perfil-container img {
-  width: 200px;
+.stat-box {
+  background: #333;
+  color: #fff;
+  padding: 1rem;
   border-radius: 10px;
+  width: 100px;
 }
 
-.perfil-container p {
-  margin: 0.5rem 0;
-  font-size: 1rem;
+.stat-num {
+  font-size: 1.5rem;
+  display: block;
+}
+
+.ficha {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.grafico {
+  max-width: 500px;
+  margin: 0 auto 2rem;
+}
+
+.recordes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.recorde-box {
+  background: #e6e6e6;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 180px;
+  text-align: center;
+}
+
+.recorde-valor {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.recorde-tipo {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.recorde-info {
+  font-size: 0.9rem;
+  color: #555;
 }
