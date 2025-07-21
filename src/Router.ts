@@ -1,7 +1,7 @@
 
 export const route = [
   { path: '/Campeonatos', name: 'CAMPEONATOS' },
-  { path: '/Equipes', name: 'EQUIPES' },
+  { path: '/Times', name: 'TIMES' },
   { path: '/Atletas', name: 'ATLETAS' },
   { path: '/Estatisticas', name: 'ESTATISTICAS' },
 ]

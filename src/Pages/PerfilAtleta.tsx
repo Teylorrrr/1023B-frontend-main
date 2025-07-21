@@ -21,13 +21,14 @@ ChartJS.register(
   Legend
 );
 
-interface AtletaDetalhe {
+interface Atleta {
   registroAtleta: number;
   nome: string;
   nomeCamisa: string;
   numeroCamisa: number;
   posicao: number;
   altura: number;
+  time: string;
   saltoVertical: number;
   envergadura: number;
   peso: number;
@@ -79,23 +80,53 @@ function AtletaDetalhe() {
   const { registroAtleta } = useParams<{ registroAtleta: string }>();
   const [atleta, setAtleta] = useState<AtletaDetalhe | null>(null);
   const [estatisticas, setEstatisticas] = useState<EstatisticaJogo[]>([]);
+ const [time, setTime] = useState<string>(''); // <- importante!
   const navigate = useNavigate();
 
-  // Fetch Atleta details
-  useEffect(() => {
-    if (!registroAtleta) return;
+function formatarDataBrasileira(dataISO: string | null | undefined): string {
+  if (!dataISO) return 'Data inválida';
+  const data = new Date(dataISO); // ← "1998-03-15" funciona aqui
+  if (isNaN(data.getTime())) return 'Data inválida';
 
-    fetch(`http://localhost:8000/atletas/${registroAtleta}`)
-      .then(res => {
-        if (!res.ok) throw new Error('Atleta não encontrado');
-        return res.json();
-      })
-      .then(data => setAtleta(data))
-      .catch(() => {
-        alert('Atleta não encontrado');
-        navigate('/atletas');
-      });
-  }, [registroAtleta, navigate]);
+  const dia = String(data.getDate()).padStart(2, '0');
+  const mes = String(data.getMonth() + 1).padStart(2, '0');
+  const ano = data.getFullYear();
+
+  return `${dia}/${mes}/${ano}`;
+}
+
+
+useEffect(() => {
+  if (!registroAtleta) return;
+
+  // Buscar dados do atleta
+  fetch(`http://localhost:8000/atletas/${registroAtleta}`)
+    .then(res => {
+      if (!res.ok) throw new Error('Atleta não encontrado');
+      return res.json();
+    })
+  .then(data => {
+  console.log("Atleta vindo da API:", data); // <- verifique se tem dataNascimento aqui
+  setAtleta(data);
+})
+    .catch(() => {
+      alert('Atleta não encontrado');
+      navigate('/atletas');
+    });
+
+  // ✅ Buscar equipe do atleta
+  fetch(`http://localhost:8000/atletas/${registroAtleta}/time`)
+    .then(res => {
+      if (!res.ok) throw new Error('Time não encontrado');
+      return res.json();
+    })
+    .then(data => setTime(data.nome)) // <- supondo que a resposta tem { nome: 'União Corinthians LDB' }
+    .catch(() => {
+      setTime('Sem equipe');
+    });
+
+}, [registroAtleta, navigate]);
+
 
   // Fetch Estatisticas
   useEffect(() => {
@@ -185,7 +216,7 @@ function AtletaDetalhe() {
   return (
     <div className="perfil-atleta-container">
       <div className="header-navigation">
-        <button onClick={() => navigate('/atletas')}>← Voltar à lista</button>
+        <button onClick={() => navigate(-1)}>← Voltar à lista</button>
       </div>
 
       <div className="top-bar">
@@ -241,14 +272,14 @@ function AtletaDetalhe() {
               <span>{posicaoParaTexto(atleta.posicao)}</span>
             </div>
             <div className="detail-row">
-              <span>Equipe(s)</span>
-              <span>{atleta.equipe || 'União Corinthians LDB'}</span> {/* Placeholder */}
+              <span>Equipe</span>
+              <span>{time}</span>
               <span>Naturalidade</span>
-              <span>{atleta.cidadeOrigem} ({atleta.estadoOrigem})</span>
+              <span>{atleta.cidadeOrigem} - {atleta.estadoOrigem} - {atleta.paisOrigem}</span>
             </div>
             <div className="detail-row">
-              <span>Data de Nascimento</span>
-              <span>{atleta.dataNascimento || '05/09/2004'}</span> {/* Placeholder */}
+              <span>Nascimento</span>
+             <span>{formatarDataBrasileira(atleta.dataNascimento)}</span>
               <span>Altura / Peso</span>
               <span>{atleta.altura}m / {atleta.peso}Kg</span>
             </div>
@@ -277,7 +308,7 @@ function AtletaDetalhe() {
                 <div className="record-item">
                   <span className="record-value">{recordeRebotes}</span>
                   <span className="record-label">REB</span>
-                  <span className="record-game">vs. Campo Mourão<br/>29/08/2024</span> {/* Placeholder */}
+                  <span className="record-game"> em {estatisticas.filter(s => s.assistencias === recordeAssists).length} partidas</span>
                 </div>
                 <div className="record-item">
                   <span className="record-value">{recordeAssists}</span>
@@ -287,7 +318,7 @@ function AtletaDetalhe() {
                 <div className="record-item">
                   <span className="record-value">{recorde3PC}</span>
                   <span className="record-label">3PC</span>
-                  <span className="record-game">-</span>
+                  <span className="record-game">em {estatisticas.filter(s => s.assistencias === recordeAssists).length} partidas</span>
                 </div>
                 <div className="record-item">
                   <span className="record-value">{recorde2PC}</span>
@@ -297,7 +328,7 @@ function AtletaDetalhe() {
                 <div className="record-item">
                   <span className="record-value">{recordeLLC}</span>
                   <span className="record-label">LLC</span>
-                  <span className="record-game">vs. Corinthians<br/>13/07/2024</span> {/* Placeholder */}
+                  <span className="record-game">em {estatisticas.filter(s => s.assistencias === recordeAssists).length} partidas</span>
                 </div>
               </div>
             </div>

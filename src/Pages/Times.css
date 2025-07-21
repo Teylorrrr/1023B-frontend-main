@@ -1,0 +1,91 @@
+.times-container {
+  padding: 2rem;
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+}
+
+.lista-times {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.card-equipe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.card-equipe:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.escudo-equipe {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.info-equipe h2 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.info-equipe p {
+  font-size: 0.9rem;
+  color: #555;
+}
+.times-container {
+  padding: 1rem;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.lista-times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.card-equipe {
+  width: 180px;          /* largura fixa para o card */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;       /* importante para cortar imagens que extrapolam */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: pointer;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.card-equipe:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.escudo {
+  width: 100%;       /* imagem sempre ocupará 100% da largura do card */
+  height: auto;      /* mantém proporção */
+  object-fit: contain; /* ajusta a imagem para caber dentro da caixa sem cortar */
+  max-height: 150px; /* limita a altura para não deixar o card muito grande */
+  background-color: #f0f0f0; /* para caso a imagem demore a carregar */
+}
+
+.info-equipe {
+  padding: 0.5rem;
+  text-align: center;
+}

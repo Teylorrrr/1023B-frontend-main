@@ -5,28 +5,17 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 ////////////////////////////////////////////////////
 ///////////////// Páginas ////////////////////////////
 import Campeonatos from './Pages/Campeonatos.tsx'
-import Equipes from './Pages/Equipes.tsx'
+import Times from './Pages/Times.tsx'
 import Fotos from './Pages/Fotos.tsx'
 import Noticias from './Pages/Noticias.tsx'
 import OutrosCampeonatos from './Pages/OutrosCampeonatos.tsx'
 import Atletas from './Pages/Atletas.tsx'
 import Estatisticas from './Pages/Estatisticas.tsx'
 import Loja from './Pages/Loja.tsx'
-///////////////// Páginas estilo /////////////////////////////
-/*
-import './Pages/Campeonatos.css'
-import './Pages/Equipes.css'
-import './Pages/Fotos.css'
-import './Pages/Noticias.css'
-import './Pages/OutrosCampeonatos.css'*/
-import './Pages/Atletas.css'
-/*
-import './Pages/Estatisticas.css'
-import './Pages/Loja.css'*/
 /////////////////////////paginas-especificas///////////////////////////////
 import PerfilAtleta from './Pages/PerfilAtleta.tsx'
-
-//////////////////////////////////////////////////////////////
+import PerfilTime from './Pages/perfilTime.tsx'
+import Admin from './Pages/Admin.tsx'
 ///////////////// Componentes comuns ////////////////////////////
 import Header from './Comum/Header.tsx'
 import Footer from './Comum/Footer.tsx'
@@ -36,8 +25,6 @@ import './Comum/Footer.css'
 ////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 
-
-///////////////// Modelo para outras páginas ////////////////////////////
 const PaginaPadrao = ({ children }: { children: React.ReactNode }) => (
   <>
     <Header />
@@ -48,47 +35,56 @@ const PaginaPadrao = ({ children }: { children: React.ReactNode }) => (
 
 ///////////////// Roteador ////////////////////////////
 const router = createBrowserRouter([
-{
-  path: '/',
-  element: <PaginaPadrao><Campeonatos /></PaginaPadrao>
-},
-{
-  path: '/Campeonatos',
-  element: <PaginaPadrao><Campeonatos /></PaginaPadrao>
-},
-{
-  path: '/Equipes',
-  element: <PaginaPadrao><Equipes /></PaginaPadrao>
-},
-{
-    path: '/Fotos',
+  {
+    path: '/',
+    element: <PaginaPadrao><Atletas /></PaginaPadrao>
+  },
+   {
+    path: '/Admin23',
+    element: <PaginaPadrao><Admin /></PaginaPadrao>
+  },
+  {
+    path: '/campeonatos',
+    element: <PaginaPadrao><Campeonatos /></PaginaPadrao>
+  },
+  {
+    path: '/times',
+    element: <PaginaPadrao><Times /></PaginaPadrao>
+  },
+  {
+    path: '/times/:id',  
+    element: <PaginaPadrao><PerfilTime /></PaginaPadrao>
+  },
+  {
+    path: '/fotos',
     element: <PaginaPadrao><Fotos /></PaginaPadrao>
   },
   {
-    path: '/Noticias',
+    path: '/noticias',
     element: <PaginaPadrao><Noticias /></PaginaPadrao>
   },
   {
-    path: '/OutrosCampeonatos',
+    path: '/outroscampeonatos',
     element: <PaginaPadrao><OutrosCampeonatos /></PaginaPadrao>
   },
   {
-    path: '/Atletas',
+    path: '/atletas',
     element: <PaginaPadrao><Atletas /></PaginaPadrao>
   },
   {
-  path: '/atleta/:registroAtleta',
-  element: <PaginaPadrao><PerfilAtleta /></PaginaPadrao>
+    path: '/atleta/:registroAtleta',
+    element: <PaginaPadrao><PerfilAtleta /></PaginaPadrao>
   },
   {
-    path: '/Estatisticas',
+    path: '/estatisticas',
     element: <PaginaPadrao><Estatisticas /></PaginaPadrao>
   },
   {
-    path: '/Loja',
+    path: '/loja',
     element: <PaginaPadrao><Loja /></PaginaPadrao>
   }
-])
+]);
+
 
 ///////////////// Renderização ////////////////////////////
 createRoot(document.getElementById('root')!).render(
